@@ -1,0 +1,22 @@
+body{
+    background-image: url(hatter.png);
+}
+
+nav{
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 100%;
+    height: 0%;
+    display: block;
+    padding: 7px;
+    margin: auto;
+    text-decoration: none;
+}
+a:hover{
+    color: cyan;
+}
+a:visited{
+    font-weight: lighter;
+    font-style: italic;
+
+}
