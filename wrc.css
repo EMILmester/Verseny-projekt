@@ -1,22 +1,94 @@
-body{
-    background-image: url(hatter.png);
+/* Alap beállítások */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #161616;
+    overflow: hidden;
 }
 
-nav{
-    text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+/* Canvas mindig a háttérben */
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 0%;
-    display: block;
-    padding: 7px;
-    margin: auto;
-    text-decoration: none;
+    height: 100%;
+    z-index: 0; /* háttér */
 }
-a:hover{
-    color: cyan;
-}
-a:visited{
-    font-weight: lighter;
-    font-style: italic;
 
+/* Gomb felül középre */
+.btn {
+    display: inline-block;
+    position: relative;      /* pseudo-elemekhez */
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 20px auto;
+    padding: 12px 35px;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    background-color: #333;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 10;             /* canvas fölé */
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+/* Háttérréteg a gomb mögött */
+.btn::after {
+    content: "";
+    position: absolute;
+    z-index: -1;             /* gomb mögött, canvas fölött */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    border-radius: 50px;
+}
+
+/* Glow effekt körben */
+.btn::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -6px;
+    left: -6px;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    background: linear-gradient(
+        45deg,
+        #ff0000,#ff7300,#fffb00,#48ff00,#00ffd5,#002bff,#ff00c8,#ff0000
+    );
+    filter: blur(15px);
+    border-radius: 50px;
+    opacity: 0;
+    background-size: 600%;
+    animation: glowing 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Glow animáció */
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+/* Hover és active állapot */
+.btn:hover::before { opacity: 1; }
+.btn:active::after { background: transparent; }
+.btn:active { transform: translateX(-50%) scale(0.97); color: #000; font-weight: bold; }
+
+/* Reszponzív */
+@media (max-width: 768px) {
+    .btn { padding: 10px 28px; font-size: 0.9rem; }
+    .btn::before { top: -4px; left: -4px; width: calc(100% + 8px); height: calc(100% + 8px); }
+}
+@media (max-width: 480px) {
+    .btn { padding: 8px 22px; font-size: 0.8rem; }
+    .btn::before { top: -3px; left: -3px; width: calc(100% + 6px); height: calc(100% + 6px); }
 }
