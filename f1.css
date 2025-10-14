@@ -19,42 +19,65 @@ html, body {
 
 /* Főoldal gomb */
 .btn {
-    display: inline-block;
-    position: relative;
+     position: absolute;
+    top: 8%; /* kicsit a közép fölé */
     left: 50%;
-    transform: translateX(-50%);
-    margin: 20px auto;
-    padding: 12px 35px;
+    transform: translate(-50%, -50%);
+    padding: 15px 40px;
     border: none;
     outline: none;
-    border-radius: 50px;
-    background-color: #333;
     color: #fff;
-    font-size: 1rem;
     cursor: pointer;
-    text-decoration: none;
-    z-index: 10; /* canvas fölé */
-    transition: transform 0.2s ease, color 0.3s ease;
+    z-index: 10;
+    border-radius: 12px;
+    background-color: #333;
+    font-size: 1.1rem;
 }
 
-/* Glow effekt */
-.btn::before {
+/* Háttér (gomb maga) */
+.btn::after {
     content: "";
     position: absolute;
     z-index: -1;
-    top: -6px;
-    left: -6px;
-    width: calc(100% + 12px);
-    height: calc(100% + 12px);
-    background: linear-gradient(
-        45deg,#ff0000,#ff7300,#fffb00,#48ff00,#00ffd5,#002bff,#ff00c8,#ff0000
-    );
-    filter: blur(15px);
+    inset: 0; /* top,left,right,bottom = 0 */
+    background-color: #333;
+    border-radius: 12px;
+}
+
+/* Fényudvar a gomb KÖRÜL */
+.btn::before {
+    content: "";
+    position: absolute;
+    z-index: -2; /* a gomb mögé kerül */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% + 5px);  /* jóval nagyobb, hogy körbevilágítson */
+    height: calc(100% + 5px);
     border-radius: 50px;
-    opacity: 0;
+    background: linear-gradient(
+        45deg,
+        #ff0000,#ff7300,#fffb00,#48ff00,#00ffd5,#002bff,#ff00c8,#ff0000
+    );
     background-size: 600%;
+    filter: blur(25px); /* nagy blur, lágy fénykör */
+    opacity: 0;
     animation: glowing 20s linear infinite;
     transition: opacity 0.3s ease-in-out;
+}
+
+/* Hoverkor felgyullad */
+.btn:hover::before {
+    opacity: 1;
+}
+
+/* Nyomáskor */
+.btn:active::after {
+    background: transparent;
+}
+.btn:active {
+    color: black;
+    font-weight: bold;
 }
 
 @keyframes glowing {
@@ -62,10 +85,6 @@ html, body {
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
 }
-
-.btn:hover::before { opacity: 1; }
-.btn:active { transform: translateX(-50%) scale(0.97); color: #000; font-weight: bold; }
-
 /* Carousel */
 .carousel-container {
     position: relative;
