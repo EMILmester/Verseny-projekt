@@ -17,10 +17,10 @@ html, body {
     z-index: 0; /* háttér */
 }
 
-/* Gomb felül középre */
+/* Főoldal gomb */
 .btn {
     display: inline-block;
-    position: relative;      /* pseudo-elemekhez */
+    position: relative;
     left: 50%;
     transform: translateX(-50%);
     margin: 20px auto;
@@ -33,24 +33,11 @@ html, body {
     font-size: 1rem;
     cursor: pointer;
     text-decoration: none;
-    z-index: 10;             /* canvas fölé */
+    z-index: 10; /* canvas fölé */
     transition: transform 0.2s ease, color 0.3s ease;
 }
 
-/* Háttérréteg a gomb mögött */
-.btn::after {
-    content: "";
-    position: absolute;
-    z-index: -1;             /* gomb mögött, canvas fölött */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #333;
-    border-radius: 50px;
-}
-
-/* Glow effekt körben */
+/* Glow effekt */
 .btn::before {
     content: "";
     position: absolute;
@@ -60,8 +47,7 @@ html, body {
     width: calc(100% + 12px);
     height: calc(100% + 12px);
     background: linear-gradient(
-        45deg,
-        #ff0000,#ff7300,#fffb00,#48ff00,#00ffd5,#002bff,#ff00c8,#ff0000
+        45deg,#ff0000,#ff7300,#fffb00,#48ff00,#00ffd5,#002bff,#ff00c8,#ff0000
     );
     filter: blur(15px);
     border-radius: 50px;
@@ -71,24 +57,61 @@ html, body {
     transition: opacity 0.3s ease-in-out;
 }
 
-/* Glow animáció */
 @keyframes glowing {
     0% { background-position: 0 0; }
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
 }
 
-/* Hover és active állapot */
 .btn:hover::before { opacity: 1; }
-.btn:active::after { background: transparent; }
 .btn:active { transform: translateX(-50%) scale(0.97); color: #000; font-weight: bold; }
 
-/* Reszponzív */
-@media (max-width: 768px) {
-    .btn { padding: 10px 28px; font-size: 0.9rem; }
-    .btn::before { top: -4px; left: -4px; width: calc(100% + 8px); height: calc(100% + 8px); }
+/* Carousel */
+.carousel-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 120px auto 0 auto; /* gomb alatt */
+    perspective: 1000px;
+    z-index: 10; /* canvas fölé */
 }
-@media (max-width: 480px) {
-    .btn { padding: 8px 22px; font-size: 0.8rem; }
-    .btn::before { top: -3px; left: -3px; width: calc(100% + 6px); height: calc(100% + 6px); }
+
+.carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s;
 }
+
+.carousel-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    z-index: 20;
+}
+
+.arrow.left { left: -50px; }
+.arrow.right { right: -50px; }
+.arrow:hover { background: rgba(255,255,255,0.3); }
