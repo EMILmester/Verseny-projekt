@@ -1,4 +1,4 @@
-// Canvas háttér (háromszögek)
+// Canvas háttér (háromszögek) , szintén a háromszög hátteret rajzolja ki
 const canvas = document.getElementById("background");
 const ctx = canvas.getContext("2d");
 
@@ -57,6 +57,8 @@ function draw() {
     }
   }
 
+
+  //a világításnak a sebességét lehet állítani
   t += 2.5;
   requestAnimationFrame(draw);
 }
@@ -107,5 +109,6 @@ setInterval(() => {
   currentIndex = (currentIndex + 1) % total;
   updateCarousel();
 }, 4000);
+
 
 updateCarousel(); // inicializálás
