@@ -9,7 +9,7 @@ function resize() {
 resize();
 window.addEventListener("resize", resize);
 
-const size = 80;
+const size = 80;                
 let t = 0;
 
 function drawTriangle(x, y, size, up) {
@@ -26,6 +26,8 @@ function drawTriangle(x, y, size, up) {
   }
   ctx.closePath();
 
+//Ez a része adja az egésznek a háromszögek közötti fényhatást.
+  
   const glow = (Math.sin((x + y + t * 5) * 0.02) + 1) / 2;
   const brightness = 60 + glow * 40;
   ctx.strokeStyle = `hsl(0, 0%, ${brightness}%)`;
@@ -42,7 +44,7 @@ function draw() {
 
   const h = Math.sqrt(3) / 2 * size;
 
-  // Középre igazítás – ez oldja meg a bal oldali torzulást
+  
   const cols = Math.ceil(canvas.width / (size / 2)) + 2;
   const rows = Math.ceil(canvas.height / h) + 2;
   const offsetX = (canvas.width - cols * (size / 2)) / 2 - size / 2;
@@ -57,6 +59,7 @@ function draw() {
     }
   }
 
+  // Itt állíthatjuk be a világításnak a sebességét az érték vátoztatásával.
   t += 1.5;
   requestAnimationFrame(draw);
 }
@@ -110,3 +113,4 @@ setInterval(() => {
 }, 4000);
 
 updateCarousel(); // inicializálás
+
