@@ -1,4 +1,3 @@
-/* Alap beállítások */
 html, body {
     height: 100%;
     margin: 0;
@@ -85,56 +84,83 @@ html, body {
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
 }
+
 /* Carousel */
 .carousel-container {
-    position: relative;
-    width: 400px;      /* a fő kép szélessége */
-    height: 250px;
-    margin: 120px auto 0 auto;
-    perspective: 1000px;
-    z-index: 10;
+  position: relative;
+  width: 450px;   /* nagyobb doboz */
+  height: 450px;
+  margin: 120px auto 0 auto;
+  perspective: 1000px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .carousel {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.5s;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
 }
 
 .carousel-item {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    transform-origin: center center;
-    transition: transform 0.5s, opacity 0.5s;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.carousel-item.active {
+  opacity: 1;
+  transform: scale(1.25); /* nagyobb aktív méret */
+  z-index: 5;
 }
 
 .carousel-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
+  width: 135%;     /* ténylegesen nagyobb kép */
+  height: auto;
+  object-fit: contain;
+  border-radius: 15px;
+}
+.carousel-item a {
+  display: inline-block;
+}
+.carousel-item img {
+  cursor: pointer;
 }
 
-/* Nyilak */
+
+/* nyilak */
 .arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    border: none;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 50%;
-    z-index: 20;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 2.2rem;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 50%;
+  z-index: 20;
+  transition: background 0.3s;
 }
 
-.arrow.left { left: -50px; }
-.arrow.right { right: -50px; }
-.arrow:hover { background: rgba(255,255,255,0.3); }
+.arrow.left {
+  left: -120px; /* 🔹 kijjebb a bal nyíl */
+}
+
+.arrow.right {
+  right: -120px; /* 🔹 kijjebb a jobb nyíl */
+}
+
+
+.arrow:hover {
+  background: rgba(255,255,255,0.3);
+}
