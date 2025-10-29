@@ -128,6 +128,13 @@ html, body {
   object-fit: contain;
   border-radius: 15px;
 }
+.carousel-item a {
+  display: inline-block;
+}
+.carousel-item img {
+  cursor: pointer;
+}
+
 
 /* nyilak */
 .arrow {
@@ -146,12 +153,13 @@ html, body {
 }
 
 .arrow.left {
-  left: -70px; /* kijjebb a nyilak */
+  left: -120px; /* 🔹 kijjebb a bal nyíl */
 }
 
 .arrow.right {
-  right: -70px;
+  right: -120px; /* 🔹 kijjebb a jobb nyíl */
 }
+
 
 .arrow:hover {
   background: rgba(255,255,255,0.3);
