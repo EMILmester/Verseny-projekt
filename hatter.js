@@ -1,4 +1,4 @@
-// Canvas háttér (háromszögek) , szintén a háromszög hátteret rajzolja ki
+// --- Háromszöges háttér ---
 const canvas = document.getElementById("background");
 const ctx = canvas.getContext("2d");
 
@@ -27,7 +27,7 @@ function drawTriangle(x, y, size, up) {
   ctx.closePath();
 
   const glow = (Math.sin((x + y + t * 5) * 0.02) + 1) / 2;
-  const brightness = 35 + glow * 40; // sötétebb alap
+  const brightness = 35 + glow * 40;
   ctx.strokeStyle = `hsl(0, 0%, ${brightness}%)`;
   ctx.lineWidth = 1.2;
   ctx.shadowColor = ctx.strokeStyle;
@@ -37,12 +37,10 @@ function drawTriangle(x, y, size, up) {
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "#0a0a0a"; // sötét háttér
+  ctx.fillStyle = "#0a0a0a";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   const h = Math.sqrt(3) / 2 * size;
-
-  // Középre igazítás
   const cols = Math.ceil(canvas.width / (size / 2)) + 2;
   const rows = Math.ceil(canvas.height / h) + 2;
   const offsetX = (canvas.width - cols * (size / 2)) / 2 - size / 2;
@@ -57,58 +55,33 @@ function draw() {
     }
   }
 
-
-  //a világításnak a sebességét lehet állítani
   t += 2.5;
   requestAnimationFrame(draw);
 }
-
 draw();
 
 // --- Carousel logika ---
 const items = document.querySelectorAll('.carousel-item');
-const total = items.length;
 let currentIndex = 0;
+const total = items.length;
 
-function updateCarousel() {
+function showSlide(index) {
   items.forEach((item, i) => {
-    let diff = (i - currentIndex + total) % total;
-
-    if (diff === 0) {
-      item.style.transform = `translateX(-50%) scale(1)`;
-      item.style.opacity = 1;
-      item.style.zIndex = 5;
-    } else if (diff === 1) {
-      item.style.transform = `translateX(60%) scale(0.6)`;
-      item.style.opacity = 0.6;
-      item.style.zIndex = 4;
-    } else if (diff === total - 1) {
-      item.style.transform = `translateX(-160%) scale(0.6)`;
-      item.style.opacity = 0.6;
-      item.style.zIndex = 4;
-    } else {
-      item.style.transform = `translateX(-50%) scale(0.4)`;
-      item.style.opacity = 0;
-      item.style.zIndex = 1;
-    }
+    item.classList.remove('active');
+    if (i === index) item.classList.add('active');
   });
 }
 
 document.getElementById('prev').addEventListener('click', () => {
   currentIndex = (currentIndex - 1 + total) % total;
-  updateCarousel();
+  showSlide(currentIndex);
 });
 
 document.getElementById('next').addEventListener('click', () => {
   currentIndex = (currentIndex + 1) % total;
-  updateCarousel();
+  showSlide(currentIndex);
 });
 
-// Automatikus váltás
-setInterval(() => {
-  currentIndex = (currentIndex + 1) % total;
-  updateCarousel();
-}, 4000);
 
+showSlide(currentIndex); // inicializálás
 
-updateCarousel(); // inicializálás
