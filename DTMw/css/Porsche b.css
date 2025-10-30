@@ -1,3 +1,91 @@
 body {
   background: linear-gradient(45deg, #f1f1f1, #222222);
 }
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background: linear-gradient(45deg, #f1f1f1, #222222);
+}
+
+
+/* Carousel */
+.carousel-container {
+  position: relative;
+  width: 450px;   /* nagyobb doboz */
+  height: 450px;
+  margin: 120px auto 0 auto;
+  perspective: 1000px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.carousel-item {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.carousel-item.active {
+  opacity: 1;
+  transform: scale(1.25); /* nagyobb aktív méret */
+  z-index: 5;
+}
+
+.carousel-item img {
+  width: 135%;     /* ténylegesen nagyobb kép */
+  height: auto;
+  object-fit: contain;
+  border-radius: 15px;
+}
+.carousel-item a {
+  display: inline-block;
+}
+.carousel-item img {
+  cursor: pointer;
+}
+
+
+/* nyilak */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 2.2rem;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 50%;
+  z-index: 20;
+  transition: background 0.3s;
+}
+
+.arrow.left {
+  left: -120px; /* 🔹 kijjebb a bal nyíl */
+}
+
+.arrow.right {
+  right: -120px; /* 🔹 kijjebb a jobb nyíl */
+}
+
+
+.arrow:hover {
+  background: rgba(255,255,255,0.3);
+}
