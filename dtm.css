@@ -16,12 +16,12 @@ html, body {
     z-index: 0; /* háttér */
 }
 
+
 /* Főoldal gomb */
 .btn {
-     position: absolute;
-    top: 8%; /* kicsit a közép fölé */
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 20px;       /* távolság a tetejétől */
+    right: 20px;     /* távolság a jobb szélétől */
     padding: 15px 40px;
     border: none;
     outline: none;
@@ -31,7 +31,10 @@ html, body {
     border-radius: 12px;
     background-color: #333;
     font-size: 1.1rem;
+    transform: none; /* töröljük a korábbi translate-et */
+    left: auto;      /* ne igazítsa középre */
 }
+
 
 /* Háttér (gomb maga) */
 .btn::after {
@@ -123,8 +126,8 @@ html, body {
 }
 
 .carousel-item img {
-  width: 135%;     /* ténylegesen nagyobb kép */
-  height: auto;
+  width: 1000px;     /* ténylegesen nagyobb kép */
+  height: 1000px;
   object-fit: contain;
   border-radius: 15px;
 }
@@ -139,8 +142,7 @@ html, body {
 /* nyilak */
 .arrow {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: -80px; /* 🔹 lejjebb tolja a nyilakat */
   background: rgba(0,0,0,0.5);
   border: none;
   color: white;
@@ -152,12 +154,13 @@ html, body {
   transition: background 0.3s;
 }
 
+
 .arrow.left {
-  left: -120px; /* 🔹 kijjebb a bal nyíl */
+  left: -10px; /* 🔹 kijjebb a bal nyíl */
 }
 
 .arrow.right {
-  right: -120px; /* 🔹 kijjebb a jobb nyíl */
+  right: -10px; /* 🔹 kijjebb a jobb nyíl */
 }
 
 
