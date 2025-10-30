@@ -6,7 +6,7 @@ html, body {
     margin: 0;
     font-family: Arial, sans-serif;
     overflow: hidden;
-    background: linear-gradient(45deg, #fbf050, #387f45);
+    
 }
 
 
@@ -48,8 +48,8 @@ html, body {
 }
 
 .carousel-item img {
-  width: 135%;     /* ténylegesen nagyobb kép */
-  height: auto;
+  width: 1000px;     /* ténylegesen nagyobb kép */
+  height: 1000px;
   object-fit: contain;
   border-radius: 15px;
 }
@@ -64,7 +64,7 @@ html, body {
 /* nyilak */
 .arrow {
   position: absolute;
-  top: 50%;
+  bottom: -80px;
   transform: translateY(-50%);
   background: rgba(0,0,0,0.5);
   border: none;
@@ -78,11 +78,11 @@ html, body {
 }
 
 .arrow.left {
-  left: -120px; /* 🔹 kijjebb a bal nyíl */
+  left: -150px; /* 🔹 kijjebb a bal nyíl */
 }
 
 .arrow.right {
-  right: -120px; /* 🔹 kijjebb a jobb nyíl */
+  right: -150px; /* 🔹 kijjebb a jobb nyíl */
 }
 
 
