@@ -22,3 +22,15 @@ document.getElementById('next').addEventListener('click', () => {
 
 
 showSlide(currentIndex); // inicializálás
+
+// --- Hang lejátszás a gombokhoz dinamikusan ---
+document.querySelectorAll('.square-btn').forEach(btn => {
+  const soundFile = btn.getAttribute('data-sound');
+  if (soundFile) {
+    const sound = new Audio(soundFile);
+    btn.addEventListener('click', () => {
+      sound.currentTime = 0;
+      sound.play();
+    });
+  }
+});
