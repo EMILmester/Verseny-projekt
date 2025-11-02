@@ -85,7 +85,10 @@ html, body {
   right: -150px; /* 🔹 kijjebb a jobb nyíl */
 }
 
-
+.nev{
+  text-align: center;
+}
 .arrow:hover {
   background: rgba(255,255,255,0.3);
 }
+
